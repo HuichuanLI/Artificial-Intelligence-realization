@@ -92,6 +92,9 @@ def breadth_first_graph_search(problem):
 
 
 # 一致性搜索
+# 搜索策略：扩展最低代价的未扩展节点
+
+# 实现方法：仍然是队列，但是按照路径代价排序，最低优先
 def best_first_graph_search(problem, f, display=False):
     """Search the nodes with the lowest f scores first.
     You specify the function f(node) that you want to minimize; for example,
@@ -153,6 +156,13 @@ def depth_limited_search(problem, limit=50):
     # Body of depth_limited_search:
     return recursive_dls(Node(problem.initial), problem, limit)
 
+
+# 深度优先搜索变种--迭代加深搜索
+# 将深度优先和广度优先结合，逐步增加深度限制反复运行直到找到目标
+
+# 它以深度优先搜索相同的顺序搜索，单先访问节点的累计顺序实际是宽度优先
+
+# 其空间复杂度和深度优先搜索一致
 
 def iterative_deepening_search(problem):
     """[Figure 3.18]"""
