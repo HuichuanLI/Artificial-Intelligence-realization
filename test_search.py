@@ -8,7 +8,7 @@
 from Search.problem import GraphProblem
 from Search.graph import UndirectedGraph
 
-from Search.Search import breadth_first_tree_search
+from Search.Search import *
 
 
 def test_breadth_first_tree_search():
@@ -32,10 +32,8 @@ if __name__ == "__main__":
         Rimnicu=dict(Sibiu=80),
         Urziceni=dict(Vaslui=142)))
 
-
-
     romania_problem = GraphProblem('Arad', 'Bucharest', romania_map)
 
     print(breadth_first_tree_search(romania_problem).solution())
-
-
+    print(depth_first_graph_search(romania_problem).solution())
+    print(uniform_cost_search(romania_problem).solution())

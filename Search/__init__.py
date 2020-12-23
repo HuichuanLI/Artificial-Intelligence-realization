@@ -8,3 +8,4 @@ from .graph import *
 from .node import *
 from .Search import *
 from .problem import *
+from .utils import *
