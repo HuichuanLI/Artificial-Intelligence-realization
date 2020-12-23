@@ -62,3 +62,10 @@ class PriorityQueue:
         except ValueError:
             raise KeyError(str(key) + " is not in the priority queue")
         heapq.heapify(self.heap)
+
+
+def distance(a, b):
+    """The distance between two (x, y) points."""
+    xA, yA = a
+    xB, yB = b
+    return np.hypot((xA - xB), (yA - yB))

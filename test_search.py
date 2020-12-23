@@ -41,6 +41,8 @@ if __name__ == "__main__":
     print(depth_limited_search(problem=romania_problem, limit=3).solution())
 
     print(depth_limited_search(problem=romania_problem, limit=2))
-    
+
     print(iterative_deepening_search(
         romania_problem).solution())
+
+    print(bidirectional_search(romania_problem))

@@ -6,7 +6,9 @@
 from collections import deque
 from .node import Node
 from .utils import PriorityQueue
+from .problem import *
 import sys
+import numpy as np
 
 
 def breadth_first_tree_search(problem):
@@ -170,3 +172,18 @@ def iterative_deepening_search(problem):
         result = depth_limited_search(problem, depth)
         if result != 'cutoff':
             return result
+
+
+# Bidirectional Search
+# Pseudocode from https://webdocs.cs.ualberta.ca/%7Eholte/Publications/MM-AAAI2016.pdf
+# 同时进行两个方向搜索，一个是从初始状态向前搜索，一个是从目标状态向后搜索，当两者相遇时停止
+
+# 该方法可以通过一种剩余距离的启发式估计来导向
+
+# todo
+
+# ______________________________________________________________________________
+# Informed (Heuristic) Search
+
+# 贪婪最好的当然就是一致性搜索
+greedy_best_first_graph_search = best_first_graph_search
