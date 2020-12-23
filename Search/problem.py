@@ -4,6 +4,7 @@
 # @File : problem.py
 # @Software: PyCharm
 import numpy as np
+from .utils import *
 
 
 class Problem:

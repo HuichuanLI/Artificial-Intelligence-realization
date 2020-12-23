@@ -186,4 +186,20 @@ def iterative_deepening_search(problem):
 # Informed (Heuristic) Search
 
 # 贪婪最好的当然就是一致性搜索
+# Greedy best-first search is accomplished by specifying f(n) = h(n).
+
 greedy_best_first_graph_search = best_first_graph_search
+
+
+# 搜索策略：避免扩展代价高的路径，使总的估计求解代价最小化
+#
+# 评价函数 f(n) = g(n) + h(n)      g(n)是到该节点代价h(n)是从该节点到目标的估计代价
+#
+# 定理：A*搜索是最优的
+def astar_search(problem, h=None, display=False):
+    """A* search is best-first graph search with f(n) = g(n)+h(n).
+    You need to specify the h function when you call astar_search, or
+    else in your Problem subclass."""
+    # h = memoize(h or problem.h, 'h')
+    # h = problem.h()
+    return best_first_graph_search(problem, lambda n: n.path_cost + problem.h(n), display)
