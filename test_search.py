@@ -34,6 +34,7 @@ if __name__ == "__main__":
 
     romania_problem = GraphProblem('Arad', 'Bucharest', romania_map)
 
-    print(breadth_first_tree_search(romania_problem).solution())
-    print(depth_first_graph_search(romania_problem).solution())
-    print(uniform_cost_search(romania_problem).solution())
+    # print(breadth_first_tree_search(romania_problem).solution())
+    # print(depth_first_graph_search(romania_problem).solution())
+    # print(uniform_cost_search(romania_problem).solution())
+    print(uniform_cost_search(romania_problem).path)

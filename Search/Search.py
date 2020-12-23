@@ -6,6 +6,7 @@
 from collections import deque
 from .node import Node
 from .utils import PriorityQueue
+import sys
 
 
 def breadth_first_tree_search(problem):
@@ -90,6 +91,7 @@ def breadth_first_graph_search(problem):
     return None
 
 
+# 一致性搜索
 def best_first_graph_search(problem, f, display=False):
     """Search the nodes with the lowest f scores first.
     You specify the function f(node) that you want to minimize; for example,
@@ -109,6 +111,7 @@ def best_first_graph_search(problem, f, display=False):
                 print(len(explored), "paths have been expanded and", len(frontier), "paths remain in the frontier")
             return node
         explored.add(node.state)
+        # 这个函数真的牛逼
         for child in node.expand(problem):
             if child.state not in explored and child not in frontier:
                 frontier.append(child)
@@ -122,3 +125,38 @@ def best_first_graph_search(problem, f, display=False):
 def uniform_cost_search(problem, display=False):
     """[Figure 3.14]"""
     return best_first_graph_search(problem, lambda node: node.path_cost, display)
+
+
+# 深度优先搜索变种--深度受限搜索
+# 若状态空间无限，则深度优先搜索会失败，添加界限l可解决，即深度l的节点当做末梢节点，这叫做深度受限搜索
+
+# 缺点：l<d,即最浅的目标在深度限制之外，这种方法就会出现不完备性；l>d,这种方法也非最优
+
+def depth_limited_search(problem, limit=50):
+    """[Figure 3.17]"""
+
+    def recursive_dls(node, problem, limit):
+        if problem.goal_test(node.state):
+            return node
+        elif limit == 0:
+            return 'cutoff'
+        else:
+            cutoff_occurred = False
+            for child in node.expand(problem):
+                result = recursive_dls(child, problem, limit - 1)
+                if result == 'cutoff':
+                    cutoff_occurred = True
+                elif result is not None:
+                    return result
+            return 'cutoff' if cutoff_occurred else None
+
+    # Body of depth_limited_search:
+    return recursive_dls(Node(problem.initial), problem, limit)
+
+
+def iterative_deepening_search(problem):
+    """[Figure 3.18]"""
+    for depth in range(sys.maxsize):
+        result = depth_limited_search(problem, depth)
+        if result != 'cutoff':
+            return result
