@@ -98,9 +98,9 @@ class GraphProblem(Problem):
 
 directions4 = {'W': (-1, 0), 'N': (0, 1), 'E': (1, 0), 'S': (0, -1)}
 
+directions8 = dict(directions4)
 
-# directions8 = dict(directions4)
-# directions8.update({'NW': (-1, 1), 'NE': (1, 1), 'SE': (1, -1), 'SW': (-1, -1)})
+directions8.update({'NW': (-1, 1), 'NE': (1, 1), 'SE': (1, -1), 'SW': (-1, -1)})
 
 
 class PeakFindingProblem(Problem):
