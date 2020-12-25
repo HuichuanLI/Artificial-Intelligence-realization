@@ -5,6 +5,8 @@
 # @Software: PyCharm
 import heapq
 import numpy as np
+from operator import add
+from numpy import random
 
 
 class PriorityQueue:
@@ -70,3 +72,23 @@ def distance(a, b):
     xA, yA = a
     xB, yB = b
     return np.hypot((xA - xB), (yA - yB))
+
+
+def vector_add(a, b):
+    """Component-wise addition of two vectors."""
+    return tuple(map(add, a, b))
+
+
+identity = lambda x: x
+
+
+def argmax_random_tie(seq, key=identity):
+    """Return an element with highest fn(seq[i]) score; break ties at random."""
+    return max(shuffled(seq), key=key)
+
+
+def shuffled(iterable):
+    """Randomly shuffle a copy of iterable."""
+    items = list(iterable)
+    random.shuffle(items)
+    return items

@@ -55,3 +55,4 @@ if __name__ == "__main__":
         romania_problem).solution())
 
     print(astar_search(romania_problem).solution())
+

@@ -203,3 +203,5 @@ def astar_search(problem, h=None, display=False):
     # h = memoize(h or problem.h, 'h')
     # h = problem.h()
     return best_first_graph_search(problem, lambda n: n.path_cost + problem.h(n), display)
+
+
