@@ -34,5 +34,35 @@ def test_simulated_annealing():
     assert max(sols) == 999
 
 
+def test_genetic_problem():
+    # Queens Problem
+    # 基因序列
+    gene_pool = range(8)
+    population = init_population(100, gene_pool, 8)
+
+    def fitness(q):
+        # 适应度函数
+        non_attacking = 0
+        for row1 in range(len(q)):
+            for row2 in range(row1 + 1, len(q)):
+                col1 = int(q[row1])
+                col2 = int(q[row2])
+                row_diff = row1 - row2
+                col_diff = col1 - col2
+
+                # 不是斜着的 45度和-135度
+                if col1 != col2 and row_diff != col_diff and row_diff != -col_diff:
+                    non_attacking += 1
+
+        return non_attacking
+
+    solution = genetic_algorithm(population, fitness, gene_pool=gene_pool, f_thres=25)
+    assert fitness(solution) >= 25
+    return solution
+
+
 test_hill_climbing()
+
 test_simulated_annealing()
+
+print("result:" + " ".join(map(str, test_genetic_problem())))
