@@ -107,7 +107,7 @@ def init_population(pop_number, gene_pool, state_length):
 
 
 def select(r, population, fitness_fn):
-    # 遗传算法：选择前面r个
+    # 遗传算法：随机选取前面2个
     fitnesses = map(fitness_fn, population)
     sampler = weighted_sampler(population, fitnesses)
     return [sampler() for i in range(r)]
