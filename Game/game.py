@@ -166,6 +166,17 @@ class TicTacToe(Game):
         n -= 1  # Because we counted move itself twice
         return n >= self.k
 
+    def play_game(self, *players):
+        """Play an n-person, move-alternating game."""
+        state = self.initial
+        while True:
+            for player in players:
+                move = player(self, state)
+                state = self.result(state, move)
+                if self.terminal_test(state):
+                    self.display(state)
+                    return self.utility(state, self.to_move(self.initial))
+
 
 class ConnectFour(TicTacToe):
     """A TicTacToe-like game in which you can only make a move on the bottom

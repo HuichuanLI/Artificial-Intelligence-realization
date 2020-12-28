@@ -4,13 +4,12 @@
 # @File : play.py
 # @Software: PyCharm
 from Game import minmax_decision, alpha_beta_player, random_player, TicTacToe, Gomoku
-# "gen_state" can be used to generate a game state to apply the algorithm
 
 from test_game import gen_state
 
 import subprocess as sp
 
-ttt = Gomoku()
+ttt = TicTacToe()
 
 x_pos = []
 o_pos = []
@@ -29,7 +28,7 @@ print("输入你的位置 比如：1,2:")
 
 while True:
     state = gen_state(to_move='O', x_positions=x_pos,
-                      o_positions=o_pos, h=16, v=16)
+                      o_positions=o_pos, h=ttt.h, v=ttt.v)
     ttt.display(state)
     position = input("位置:")
     while "," not in position:
@@ -46,7 +45,7 @@ while True:
 
     o_pos.append((a, b))
     state = gen_state(to_move='X', x_positions=x_pos,
-                      o_positions=o_pos, h=16, v=16)
+                      o_positions=o_pos, h=ttt.h, v=ttt.v)
 
     if ttt.compute_utility(board.board, (a, b), 'O'):
         ttt.display(state)
@@ -61,7 +60,7 @@ while True:
         a, b = alpha_beta_player(ttt, state)
     x_pos.append((a, b))
     state = gen_state(to_move='O', x_positions=x_pos,
-                      o_positions=o_pos)
+                      o_positions=o_pos, h=ttt.h, v=ttt.v)
     board = ttt.result(state, (a, b))
 
     if ttt.compute_utility(board.board, (a, b), 'X'):
