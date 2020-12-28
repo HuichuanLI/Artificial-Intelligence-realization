@@ -142,7 +142,7 @@ class TicTacToe(Game):
             print()
 
     def compute_utility(self, board, move, player):
-        """If 'X' wins with this move, return 1; if 'O' wins return -1; else return 0."""
+        """判断当前player是否未成功，需要判断四个方向"""
         if (self.k_in_row(board, move, player, (0, 1)) or
                 self.k_in_row(board, move, player, (1, 0)) or
                 self.k_in_row(board, move, player, (1, -1)) or
@@ -152,7 +152,7 @@ class TicTacToe(Game):
             return 0
 
     def k_in_row(self, board, move, player, delta_x_y):
-        """Return true if there is a line through move on board for player."""
+        """判断是否能够连成一条斜线"""
         (delta_x, delta_y) = delta_x_y
         x, y = move
         n = 0  # n is number of moves in row

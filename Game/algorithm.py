@@ -6,6 +6,8 @@
 
 import numpy as np
 
+import random
+
 
 # minmax 搜索
 def minmax_decision(state, game):
@@ -71,3 +73,16 @@ def alpha_beta_search(state, game):
             best_score = v
             best_action = a
     return best_action
+
+
+def alpha_beta_player(game, state):
+    return alpha_beta_search(state, game)
+
+
+def minmax_player(game, state):
+    return minmax_decision(state, game)
+
+
+def random_player(game, state):
+    """A player that chooses a legal move at random."""
+    return random.choice(game.actions(state)) if game.actions(state) else None
